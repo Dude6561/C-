@@ -12,12 +12,18 @@ class Employee {
                           name = n;
                           salary = s;
                           }
+                           ~Employee(){
+                    cout<<"destrucor called babay"<<endl;
+                }
              void display()
                   {
                   cout<<id<<""<<name<<""<<salary<<endl;
                   }
-                };
+                  
 
+                };
+                
+               
                           
              
              
