@@ -1,39 +1,37 @@
 #include <iostream>
 using namespace std;
-class Employee {
-      public:
-             int id;
-             string name;
-             float salary;
-             
-             Employee(int i, string n, float s)
-                        {
-                          id = i;
-                          name = n;
-                          salary = s;
-                          }
-                           ~Employee(){
-                    cout<<"destrucor called babay"<<endl;
-                }
-             void display()
-                  {
-                  cout<<id<<""<<name<<""<<salary<<endl;
-                  }
-                  
 
-                };
-                
-               
-                          
-             
-             
-          
-             
-int main(){
-           Employee e1 = Employee(50, "Nischal", 50.79);
-           Employee e2 = Employee(80, "Ram", 50.9);
-           
-         e1.display();
-         e2.display();
-         return 0;
-          }
+class Demo {
+public:
+    int* valuePtr;  // pointer to dynamically allocated memory
+
+    // Constructor: allocates memory and initializes value
+    Demo(int value) {
+        valuePtr = new int(value);
+    }
+
+    // Copy constructor: deep copies the data pointed to by d.valuePtr
+    Demo(const Demo &d) {
+        valuePtr = new int(*d.valuePtr);  // allocate new memory and copy the value
+        cout << "Copy constructor called (deep copy)" << endl;
+    }
+
+    // Destructor: frees the dynamically allocated memory
+    ~Demo() {
+        delete valuePtr;
+    }
+
+    void show() {
+        cout << valuePtr << endl;
+    }
+};
+
+int main() {
+    Demo d1(50);      // creates d1 with valuePtr pointing to 50
+    Demo d2 = d1;     // copy constructor called, deep copy
+
+    d1.show();        // prints 50 (unchanged)
+    d2.show();        // prints 100 (changed)
+
+    return 0;
+}
